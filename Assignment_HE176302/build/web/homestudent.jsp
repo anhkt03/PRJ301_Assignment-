@@ -9,9 +9,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Home Student</title>
     </head>
     <body>
-        
+        <h1>FPT University Academic Portal</h1>
+        <form action="homestudent" method="POST">
+            <div>
+                <button type="submit" name="action" value="viewSchedule">View Schedule</button>
+            </div>
+            <div>
+                <button type="submit" name="action" value="viewGrade">View Grade</button>
+            </div>
+        </form>
     </body>
 </html>

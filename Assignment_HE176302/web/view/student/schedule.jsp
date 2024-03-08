@@ -114,7 +114,7 @@
     </body>
     <script>
         function goToHomePage() {
-            window.location.href = "home";
+            window.location.href = "homestudent";
         }
 
         function updateWeeks() {

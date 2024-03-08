@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author kieuthanhtheanh
  */
-@WebServlet(name = "Home", urlPatterns = {"/home"})
-public class Home extends HttpServlet {
+@WebServlet(name = "HomeStudent", urlPatterns = {"/homestudent"})
+public class HomeStudent extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -35,10 +35,10 @@ public class Home extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Home</title>");
+            out.println("<title>Servlet HomeStudent</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Home at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet HomeStudent at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +56,7 @@ public class Home extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("homelecturer.jsp").forward(request, response);
+        request.getRequestDispatcher("homestudent.jsp").forward(request, response);
     }
 
     /**
@@ -74,11 +74,10 @@ public class Home extends HttpServlet {
 
         
         
-        if ("viewTimetable".equals(action)) {
-            response.sendRedirect("timetable");
+        if ("viewSchedule".equals(action)) {
+            response.sendRedirect("schedule");
         } else if ("viewGrade".equals(action)) {
-            // Xử lý khi chọn "View Grade"
-            // Ví dụ: chuyển hướng hoặc xử lý logic cụ thể
+            
         }
     }
 

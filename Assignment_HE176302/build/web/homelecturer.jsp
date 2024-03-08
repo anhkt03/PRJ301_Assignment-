@@ -10,7 +10,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Home</title>
+    <title>Home Lecturer</title>
     <style>
         body {
             font-family: Arial, sans-serif;
