@@ -5,9 +5,7 @@
 package controller.Authentication;
 
 import dal.AccountDBContext;
-import dal.AccountStudentDBContext;
 import entity.Account;
-import entity.AccountStudent;
 import entity.Session;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -82,15 +80,15 @@ public class LoginController extends HttpServlet {
         AccountDBContext db = new AccountDBContext();
         Account account = db.getByUsernamePassword(name, pass);
         
-        AccountStudentDBContext sdb = new AccountStudentDBContext();
-        AccountStudent acc = sdb.getByUsernamePasswordOfStudent(name, pass);
+        AccountDBContext sdb = new AccountDBContext();
+        Account acc = sdb.getByUsernamePassword(name, pass);
 
         String send = "";
         
         //acc lecturer
         if (account != null) {
             HttpSession l = request.getSession();
-            l.setAttribute("accountid", account.getAccountid());
+            l.setAttribute("type", account.getType());
             response.sendRedirect("home");
         } else {
             send += "Login Fail!";

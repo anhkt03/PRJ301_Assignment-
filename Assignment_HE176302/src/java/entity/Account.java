@@ -11,15 +11,26 @@ package entity;
 public class Account {
     private String username;
     private String password;
-    private int accountid;
+    private String type;
+    private int idtype;
 
-    public int getAccountid() {
-        return accountid;
+    public int getIdtype() {
+        return idtype;
     }
 
-    public void setAccountid(int accountid) {
-        this.accountid = accountid;
+    public void setIdtype(int idtype) {
+        this.idtype = idtype;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    
     
     public String getUsername() {
         return username;

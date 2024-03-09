@@ -46,6 +46,7 @@
 
 <body>
     <h1>FPT University Academic Portal</h1>
+    <h2>Home Lecturer</h2>
     <form action="home" method="POST">
         <div>
             <button type="submit" name="action" value="viewTimetable">View Timetable</button>
