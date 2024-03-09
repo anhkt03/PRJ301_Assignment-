@@ -77,7 +77,7 @@ public class HomeStudent extends HttpServlet {
         if ("viewSchedule".equals(action)) {
             response.sendRedirect("schedule");
         } else if ("viewGrade".equals(action)) {
-            response.sendRedirect("viewgrade");
+            response.sendRedirect("grade");
         }
     }
 

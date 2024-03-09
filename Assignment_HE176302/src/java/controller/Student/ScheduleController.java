@@ -63,7 +63,7 @@ public class ScheduleController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int sid = (int) request.getSession().getAttribute("accountid");
+            int sid = (int) request.getSession().getAttribute("accountid");
         //      int sid = (int) request.getSession().getAttribute("accountstudent");
 
         String raw_year = request.getParameter("year");
