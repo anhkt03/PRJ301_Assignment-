@@ -76,7 +76,7 @@ public class HomeLecturer extends HttpServlet {
         
         if ("viewTimetable".equals(action)) {
             response.sendRedirect("timetable");
-        } else if ("viewGrade".equals(action)) {
+        } else if ("editgrade".equals(action)) {
             // Xử lý khi chọn "View Grade"
             // Ví dụ: chuyển hướng hoặc xử lý logic cụ thể
         }

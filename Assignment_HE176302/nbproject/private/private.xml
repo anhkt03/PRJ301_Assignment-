@@ -3,17 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Spring24/PRJ301/sourceWeb/Assignment_HE176302/web/view/student/schedule.jsp</file>
-            <file>file:/D:/Spring24/PRJ301/sourceWeb/Assignment_HE176302/web/view/lecturer/attend.jsp</file>
-            <file>file:/D:/Spring24/PRJ301/sourceWeb/Assignment_HE176302/web/view/lecturer/timetable.jsp</file>
-            <file>file:/D:/Spring24/PRJ301/sourceWeb/Assignment_HE176302/web/home.jsp</file>
-            <file>file:/D:/Spring24/PRJ301/sourceWeb/Assignment_HE176302/src/java/dal/SessionDBContext.java</file>
-            <file>file:/D:/Spring24/PRJ301/sourceWeb/Assignment_HE176302/src/java/entity/Attendance.java</file>
-            <file>file:/D:/Spring24/PRJ301/sourceWeb/Assignment_HE176302/src/java/controller/Lecturer/TakeAttendance.java</file>
-            <file>file:/D:/Spring24/PRJ301/sourceWeb/Assignment_HE176302/src/java/controller/Student/ScheduleController.java</file>
-            <file>file:/D:/Spring24/PRJ301/sourceWeb/Assignment_HE176302/src/java/dal/AttendanceDBContext.java</file>
-            <file>file:/D:/Spring24/PRJ301/sourceWeb/Assignment_HE176302/src/java/controller/Lecturer/TimeTableController.java</file>
-            <file>file:/D:/Spring24/PRJ301/sourceWeb/Assignment_HE176302/src/java/entity/Student.java</file>
+            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/controller/Lecturer/TimeTableController.java</file>
+            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/dal/AccountDBContext.java</file>
+            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/web/homelecturer.jsp</file>
+            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/web/view/student/schedule.jsp</file>
+            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/entity/Account.java</file>
+            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/controller/Authentication/LoginController.java</file>
+            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/controller/Authentication/HomeStudent.java</file>
+            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/controller/Authentication/LogoutController.java</file>
+            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/controller/Student/ScheduleController.java</file>
+            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/web/homestudent.jsp</file>
+            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/controller/Authentication/HomeLecturer.java</file>
+            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/web/authentication/login.jsp</file>
         </group>
     </open-files>
 </project-private>

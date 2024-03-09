@@ -72,6 +72,7 @@ public class TimeTableController extends HttpServlet {
         
         int leid = (int) request.getSession().getAttribute("accountid");
         
+        
         String raw_year = request.getParameter("year");
         String raw_week = request.getParameter("week");
         java.sql.Date from =null;

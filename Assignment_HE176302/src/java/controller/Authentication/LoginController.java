@@ -79,17 +79,17 @@ public class LoginController extends HttpServlet {
 
         AccountDBContext db = new AccountDBContext();
         Account account = db.getByUsernamePassword(name, pass);
-        
-        AccountDBContext sdb = new AccountDBContext();
-        Account acc = sdb.getByUsernamePassword(name, pass);
 
         String send = "";
-        
-        //acc lecturer
+
+        HttpSession s = request.getSession();
         if (account != null) {
-            HttpSession l = request.getSession();
-            l.setAttribute("type", account.getType());
-            response.sendRedirect("home");
+            s.setAttribute("accountid", account.getIdtype());
+            if (account.getType().contains("gv")) {
+                response.sendRedirect("home");
+            }else if(account.getType().contains("sv")) {
+                response.sendRedirect("homestudent");
+            }
         } else {
             send += "Login Fail!";
 

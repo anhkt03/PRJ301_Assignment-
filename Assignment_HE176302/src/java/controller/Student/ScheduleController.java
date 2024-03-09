@@ -42,7 +42,7 @@ public class ScheduleController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet TimeTableContrroller</title>");            
+            out.println("<title>Servlet TimeTableContrroller</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet TimeTableContrroller at " + request.getContextPath() + "</h1>");
@@ -63,13 +63,12 @@ public class ScheduleController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   //     int sid = (int) request.getSession().getAttribute("accountid");
-  //      int sid = (int) request.getSession().getAttribute("accountstudent");
-        int sid = Integer.parseInt(request.getParameter("sid"));
-        System.out.println(sid);
+        int sid = (int) request.getSession().getAttribute("accountid");
+        //      int sid = (int) request.getSession().getAttribute("accountstudent");
+
         String raw_year = request.getParameter("year");
         String raw_week = request.getParameter("week");
-        java.sql.Date from =null;
+        java.sql.Date from = null;
         java.sql.Date to = null;
         String[] week;
         String weekfrom = null;
@@ -78,27 +77,27 @@ public class ScheduleController extends HttpServlet {
             week = DateTimeHelper.splitString(raw_week);
             weekfrom = week[0];
             weekto = week[1];
-            
+
         }
 
         String beforeFrom = raw_year + "/" + weekfrom;
-        String  beforeTo= raw_year + "/" + weekto;
+        String beforeTo = raw_year + "/" + weekto;
         String afterfrom = DateTimeHelper.changeDateFormat(beforeFrom);
         String afterto = DateTimeHelper.changeDateFormat(beforeTo);
         from = DateTimeHelper.convertStringToSqlDate(afterfrom);
         to = DateTimeHelper.convertStringToSqlDate(afterto);
-        
-        ArrayList<java.sql.Date> dates= null;
-        if(from!= null && to != null) {
+
+        ArrayList<java.sql.Date> dates = null;
+        if (from != null && to != null) {
             dates = DateTimeHelper.getDatesBetween(from, to);
         }
-               
+
         ScheduleDBContext schedule = new ScheduleDBContext();
         ArrayList<Session> sches = schedule.getBy(sid, from, to);
-        
+
         TimeSlotDBContext slotDB = new TimeSlotDBContext();
         ArrayList<TimeSlot> slots = slotDB.list();
-        
+
         request.setAttribute("dates", dates);
         request.setAttribute("slots", slots);
         request.setAttribute("sches", sches);

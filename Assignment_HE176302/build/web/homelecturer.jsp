@@ -52,7 +52,7 @@
             <button type="submit" name="action" value="viewTimetable">View Timetable</button>
         </div>
         <div>
-            <button type="submit" name="action" value="viewGrade">View Grade</button>
+            <button type="submit" name="action" value="editgrade">Edit Grade For Student</button>
         </div>
     </form>
 </body>
