@@ -151,6 +151,7 @@ public class TimeTableController extends Authorization {
         
         String raw_year = request.getParameter("year");
         String raw_week = request.getParameter("week");
+        request.setAttribute("raw_week", raw_week);
         java.sql.Date from =null;
         java.sql.Date to = null;
         String[] week;
