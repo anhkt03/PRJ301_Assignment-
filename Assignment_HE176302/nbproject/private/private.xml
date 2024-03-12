@@ -2,29 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/controller/Lecturer/TimeTableController.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/dal/AccountDBContext.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/controller/Student/ViewGrade.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/dal/DepartmentDBContext.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/controller/Authentication/LoginController.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/entity/Grade.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/entity/Semester.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/web/view/student/viewgrade.jsp</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/web/authentication/login.jsp</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/dal/SessionDBContext.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/dal/ScheduleDBContext.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/web/homelecturer.jsp</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/dal/RoleDBContext.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/controller/authorization/Authorization.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/entity/Account.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/dal/SemesterDBContext.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/web/view/student/schedule.jsp</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/controller/Lecturer/TakeAttendance.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/entity/Department.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/controller/Authentication/LogoutController.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/controller/Student/ScheduleController.java</file>
-            <file>file:/C:/Users/caunh/Documents/GitHub/PRJ301_Assignment-/Assignment_HE176302/src/java/controller/Authentication/HomeLecturer.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

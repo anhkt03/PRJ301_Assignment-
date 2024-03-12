@@ -87,6 +87,8 @@ public class LoginController extends HttpServlet {
 
         HttpSession s = request.getSession();
         if (account != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("account", account);
             s.setAttribute("accountid", account.getIdtype());
             if (account.getType().contains("gv")) {
                 response.sendRedirect("home");

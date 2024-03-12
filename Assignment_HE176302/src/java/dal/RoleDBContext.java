@@ -42,6 +42,7 @@ public class RoleDBContext extends DBContext<Role> {
         } catch (SQLException ex) {
             Logger.getLogger(RoleDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(roles.size());
         return roles;
     }
 

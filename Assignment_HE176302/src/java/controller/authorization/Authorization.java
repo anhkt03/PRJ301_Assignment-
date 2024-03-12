@@ -4,10 +4,52 @@
  */
 package controller.authorization;
 
+import controller.Authentication.BaseAuthenticationControlller;
+import dal.RoleDBContext;
+import entity.Account;
+import entity.Role;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
+
 /**
  *
  * @author kieuthanhtheanh
  */
-public class Authorization {
-    
+public abstract class Authorization extends BaseAuthenticationControlller {
+
+    private ArrayList<Role> getRoles(HttpServletRequest req, Account account) {
+        String url = req.getServletPath();
+        RoleDBContext db = new RoleDBContext();
+        return db.getByUsernameAndUrl(account.getUsername(), url);
+    }
+
+    protected abstract void doPost(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles)
+            throws ServletException, IOException;
+
+    protected abstract void doGet(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles)
+            throws ServletException, IOException;
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+        ArrayList<Role> roles = getRoles(req, account);
+        if (roles.size() < 1) {
+            resp.getWriter().println("access denied!");
+        } else {
+            doPost(req, resp, account, roles);
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+        ArrayList<Role> roles = getRoles(req, account);
+        if (roles.size() < 1) {
+            resp.getWriter().println("access denied!");
+        } else {
+            doGet(req, resp, account, roles);
+        }
+    }
+
 }
