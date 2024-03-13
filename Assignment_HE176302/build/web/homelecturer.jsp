@@ -55,6 +55,13 @@
             <button type="submit" name="action" value="editgrade">Edit Grade For Student</button>
         </div>
     </form>
+    <button class="logout" onclick="logout()">Logout</button>
 </body>
+
+<script>
+    function logout() {
+        window.location.href = "login";
+    }
+</script>
 
 </html>

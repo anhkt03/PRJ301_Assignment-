@@ -53,5 +53,11 @@
                 <button type="submit" name="action" value="viewGrade">View Grade</button>
             </div>
         </form>
+        <button class="logout" onclick="logout()">Logout</button>
     </body>
+    <script>
+        function logout() {
+            window.location.href = "login";
+        }
+    </script>
 </html>
