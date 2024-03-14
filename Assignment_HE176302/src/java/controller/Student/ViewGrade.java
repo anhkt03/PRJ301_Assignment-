@@ -61,7 +61,7 @@ public class ViewGrade extends HttpServlet {
             throws ServletException, IOException {
         DepartmentDBContext deDB = new DepartmentDBContext();
         ArrayList<Department> departments = deDB.list();
-        System.out.println(departments.size());
+        
 
         request.setAttribute("departments", departments);
         request.getRequestDispatcher("view/student/viewgrade.jsp").forward(request, response);
