@@ -58,10 +58,10 @@
                         <td>
                             ${a.isAttend}
                             <input type="radio" 
-                                   ${!a.isAttend ? "checked" : ""}
+                                   ${a.isAttend!=1 ? "checked" : ""}
                                    name="present${a.student.sid}" value="no"> Absent
                             <input type="radio" 
-                                   ${a.isAttend ? "checked" : ""}
+                                   ${a.isAttend == 1 ? "checked" : ""}
                                    name="present${a.student.sid}" value="yes"> Attend
                         </td>
                         <td><input name="comment${a.student.sid}" type="text" value="${a.comment}"></td>

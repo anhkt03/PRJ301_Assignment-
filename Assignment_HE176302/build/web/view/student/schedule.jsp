@@ -94,14 +94,17 @@
                         <c:forEach items="${requestScope.dates}" var="d">
                         <td>
                             <c:forEach items="${requestScope.sches}" var="sche">
-                                <c:if test="${(sche.date eq d) and (sche.slot.tid eq slot.tid)}">
-                                    ${sche.groupStudent.subject.subcode}
-                                    <br/>at ${sche.room.rname}
-                                    <br/><c:if test="${ses.isAttend}">
+                                <c:if test="${(sche.session.date eq d) and (sche.session.slot.tid eq slot.tid)}">
+                                    ${sche.session.groupStudent.subject.subcode}
+                                    <br/>at ${sche.session.room.rname}
+                                    <br/><c:if test="${sche.isAttend == 1}">
                                         Attend
                                     </c:if>
-                                    <c:if test="${!ses.isAttend}">
+                                    <c:if test="${sche.isAttend == -1}">
                                         Absent
+                                    </c:if>
+                                    <c:if test="${sche.isAttend == 0}">
+                                       Not Yet
                                     </c:if>
                                 </c:if>
                             </c:forEach>

@@ -182,7 +182,8 @@ public class TimeTableController extends Authorization {
         SessionDBContext sessionDB = new SessionDBContext();
         ArrayList<Session> sessions = sessionDB.getBy(leid, from, to);
        
-
+        request.setAttribute("year", raw_year);
+        request.setAttribute("week", raw_week);
         request.setAttribute("slots", slots);
         request.setAttribute("sessions", sessions);
         request.setAttribute("dates", dates);

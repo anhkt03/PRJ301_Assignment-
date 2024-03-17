@@ -10,6 +10,7 @@ import dal.SessionDBContext;
 import dal.ScheduleDBContext;
 import dal.TimeSlotDBContext;
 import entity.Account;
+import entity.Attendance;
 import entity.Role;
 import entity.Session;
 import entity.TimeSlot;
@@ -168,7 +169,9 @@ public class ScheduleController extends Authorization {
         }
 
         ScheduleDBContext schedule = new ScheduleDBContext();
-        ArrayList<Session> sches = schedule.getBy(sid, from, to);
+        ArrayList<Attendance> sches = schedule.getBy(sid, from, to);
+        
+      
 
         TimeSlotDBContext slotDB = new TimeSlotDBContext();
         ArrayList<TimeSlot> slots = slotDB.list();

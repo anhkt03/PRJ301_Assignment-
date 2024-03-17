@@ -168,10 +168,13 @@
                     if (formatDate(monday) === formatDate(startDayOfWeek) && formatDate(sunday) === formatDate(endDayOfWeek)) {
                         option.setAttribute("selected", "selected");
                     }
-    
+                    
+                    
                     
                     weeksDropdown.options.add(option);
                     currentDate.setDate(currentDate.getDate() + 7);
+              
+    
                 }
 
                 document.getElementById('week') = selectedWeek;

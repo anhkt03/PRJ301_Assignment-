@@ -93,7 +93,14 @@ public class TakeAttendance extends Authorization {
             Attendance attend = new Attendance();
             attend.setSession(ses);
             attend.setStudent(student);
-            attend.setIsAttend(request.getParameter("present" + student.getSid()).equals("yes"));
+            
+            if(request.getParameter("present" + student.getSid()).equals("yes")){
+                attend.setIsAttend(1);
+            }else {
+                attend.setIsAttend(-1);
+            }
+            
+            
             attend.setComment(request.getParameter("comment" + student.getSid()));
             attends.add(attend);
         }

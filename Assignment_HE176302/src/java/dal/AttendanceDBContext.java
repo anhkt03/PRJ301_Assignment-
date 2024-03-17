@@ -36,7 +36,7 @@ public class AttendanceDBContext extends DBContext<Attendance> {
                 PreparedStatement stm_insert_att = connection.prepareStatement(sql_insert_att);
                 stm_insert_att.setInt(1,seid);
                 stm_insert_att.setInt(2, att.getStudent().getSid());
-                stm_insert_att.setBoolean(3, att.isIsAttend());
+                stm_insert_att.setInt(3, att.getIsAttend());
                 stm_insert_att.setString(4, att.getComment());
                 stm_insert_att.executeUpdate();
 

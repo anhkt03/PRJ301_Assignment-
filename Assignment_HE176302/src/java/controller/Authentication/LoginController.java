@@ -82,8 +82,7 @@ public class LoginController extends HttpServlet {
 
         String send = "";
         
-        System.out.println("username: "+account.getUsername());
-        System.out.println("password: "+account.getPassword());
+        
 
         HttpSession s = request.getSession();
         if (account != null) {

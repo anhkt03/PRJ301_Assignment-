@@ -25,52 +25,57 @@ import java.util.logging.Logger;
  */
 public class ScheduleDBContext extends DBContext<Attendance> {
 
-    public ArrayList<Session> getBy(int sid, Date from, Date to) {
-        ArrayList<Session> schedules = new ArrayList<>();
+    public ArrayList<Attendance> getBy(int sid, Date from, Date to) {
+        ArrayList<Attendance> attends = new ArrayList<>();
         try {
-            String sql = "select t.tid, t.tname,t.start, t.[end], r.rid, r.rname, sub.subcode,ses.seid, ses.date, ses.isAttend,stu.first_name, stu.last_name\n"
+            String sql = "select t.tid, t.tname,t.start, t.[end], r.rid, r.rname, sub.subcode,ses.seid, ses.date, a.aid,\n"
+                    + "a.seid, a.isAttend, a.recordtime, a.comment\n"
                     + "from\n"
-                    + "		Subjects sub inner join GroupStudents g on sub.subid = g.subid\n"
-                    + "		inner join Sessions ses on ses.gid = g.gid\n"
-                    + "		inner join TimeSlot t on ses.tid = t.tid\n"
-                    + "		inner join Room r on r.rid = ses.rid\n"
-                    + "		inner join Attendance a on ses.seid = a.seid \n"
-                    + "		inner join Students stu on a.sid = stu.sid\n"
-                    + "		where stu.sid = ? and ses.date >= ? and ses.date <= ?";
+                    + "                  	Subjects sub inner join GroupStudents gs on sub.subid = gs.subid\n"
+                    + "                  	inner join Sessions ses on ses.gid = gs.gid\n"
+                    + "                  	inner join TimeSlot t on ses.tid = t.tid\n"
+                    + "                 	inner join Room r on r.rid = ses.rid\n"
+                    + "					JOIN [Group]  g ON gs.gid = g.gid\n"
+                    + "                   	inner join Students stu on g.sid = stu.sid\n"
+                    + "					LEFt join Attendance a on  a.sid = stu.sid AND ses.seid = a.seid\n"
+                    + "                	where stu.sid = ? and ses.[date] >= ? and ses.[date] <= ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, sid);
             stm.setDate(2, from);
             stm.setDate(3, to);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                Session ses = new Session();
-                GroupStudent g = new GroupStudent();
-                TimeSlot slot = new TimeSlot();
+
+                Session session = new Session();
+                TimeSlot t = new TimeSlot();
                 Room r = new Room();
-                Subject su = new Subject();
                 Attendance a = new Attendance();
+                Subject sub = new Subject();
+                GroupStudent g = new GroupStudent();
                 
-                ses.setSeid(rs.getInt("seid"));
-                ses.setIsAttend(rs.getBoolean("isAttend"));
-                ses.setDate(rs.getDate("date"));
-
+                t.setTid(rs.getInt("tid"));
+                t.setTname(rs.getString("tname"));
+                t.setStart(rs.getString("start"));
+                t.setEnd(rs.getString("end"));
+                session.setSlot(t);
                 
-                su.setSubcode(rs.getString("subcode"));
-                g.setSubject(su);
-
-                ses.setGroupStudent(g);
-
-                slot.setTid(rs.getInt("tid"));
-                slot.setTname(rs.getString("tname"));
-                slot.setStart(rs.getString("start"));
-                slot.setEnd(rs.getString("end"));
-                ses.setSlot(slot);
-
                 r.setRid(rs.getInt("rid"));
                 r.setRname(rs.getString("rname"));
-                ses.setRoom(r);
-
-                schedules.add(ses);
+                session.setRoom(r);
+                
+                sub.setSubcode(rs.getString("subcode"));
+                g.setSubject(sub);
+                session.setGroupStudent(g);
+                
+                session.setSeid(rs.getInt("seid"));
+                session.setDate(rs.getDate("date"));
+                a.setIsAttend(rs.getInt("isAttend"));
+                a.setAid(rs.getInt("aid"));
+                a.setRecordtime(rs.getTimestamp("recordtime"));
+                a.setComment(rs.getString("comment"));
+                a.setSession(session);
+                
+                attends.add(a);
                 
             }
 
@@ -78,7 +83,7 @@ public class ScheduleDBContext extends DBContext<Attendance> {
             Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return schedules;
+        return attends;
     }
 
     @Override

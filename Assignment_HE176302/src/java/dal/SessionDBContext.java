@@ -115,7 +115,7 @@ public class SessionDBContext extends DBContext<Session> {
                 a.setAid(rs.getInt("aid"));
                 if (a.getAid() != 0) {
                     a.setComment(rs.getString("comment"));
-                    a.setIsAttend(rs.getBoolean("isAttend"));
+                    a.setIsAttend(rs.getInt("isAttend"));
                     a.setRecordtime(rs.getTimestamp("recordtime"));
                 }
 
@@ -131,5 +131,69 @@ public class SessionDBContext extends DBContext<Session> {
     public ArrayList<Session> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+//    public ArrayList<Session> getSessionForStudent(int leid, Date from, Date to) {
+//        ArrayList<Session> sessions = new ArrayList<>();
+//        try {
+//            String sql = "select t.tid, t.tname,t.start, t.[end], r.rid, r.rname, sub.subcode,ses.seid, ses.date, ses.isAttend, a.aid,\n"
+//                    + "a.seid, a.isAttend, a.recordtime, a.comment\n"
+//                    + "from\n"
+//                    + "                  	Subjects sub inner join GroupStudents gs on sub.subid = gs.subid\n"
+//                    + "                  	inner join Sessions ses on ses.gid = gs.gid\n"
+//                    + "                  	inner join TimeSlot t on ses.tid = t.tid\n"
+//                    + "                 	inner join Room r on r.rid = ses.rid\n"
+//                    + "					JOIN [Group]  g ON gs.gid = g.gid\n"
+//                    + "                   	inner join Students stu on g.sid = stu.sid\n"
+//                    + "					LEFt join Attendance a on ses.seid = a.seid AND ses.seid = a.seid\n"
+//                    + "                	where ses.seid = 21 and ses.[date] >= ? and ses.[date] <= ?";
+//            PreparedStatement stm = connection.prepareStatement(sql);
+//            stm.setInt(1, leid);
+//            stm.setDate(2, from);
+//            stm.setDate(3, to);
+//            ResultSet rs = stm.executeQuery();
+//            while (rs.next()) {
+//                Session ses = new Session();
+//                GroupStudent g = new GroupStudent();
+//                Subject su = new Subject();
+//                TimeSlot slot = new TimeSlot();
+//                Room r = new Room();
+//                Lecturer lec = new Lecturer();
+//
+//                ses.setSeid(rs.getInt("seid"));
+//                ses.setIsAttend(rs.getBoolean("isAttend"));
+//                ses.setDate(rs.getDate("date"));
+//
+//                g.setGid(rs.getInt("gid"));
+//                g.setGname(rs.getString("gname"));
+//                su.setSubid(rs.getInt("subid"));
+//                su.setSubname(rs.getString("subname"));
+//                su.setSubcode(rs.getString("subcode"));
+//                g.setSubject(su);
+//
+//                ses.setGroupStudent(g);
+//
+//                slot.setTid(rs.getInt("tid"));
+//                slot.setTname(rs.getString("tname"));
+//                slot.setStart(rs.getString("start"));
+//                slot.setEnd(rs.getString("end"));
+//                ses.setSlot(slot);
+//
+//                r.setRid(rs.getInt("rid"));
+//                r.setRname(rs.getString("rname"));
+//                ses.setRoom(r);
+//
+//                lec.setLeid(rs.getInt("leid"));
+//                lec.setLename(rs.getString("last_name"));
+//                ses.setLecturer(lec);
+//
+//                sessions.add(ses);
+//            }
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        return sessions;
+//    }
 
 }

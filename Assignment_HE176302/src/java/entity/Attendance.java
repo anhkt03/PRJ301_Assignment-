@@ -13,7 +13,7 @@ import java.util.Date;
 public class Attendance {
     private int aid;
     private String comment;
-    private boolean isAttend;
+    private int isAttend;
     private Date recordtime;
     private Session session;
     private Student student;
@@ -34,13 +34,15 @@ public class Attendance {
         this.comment = comment;
     }
 
-    public boolean isIsAttend() {
+    public int getIsAttend() {
         return isAttend;
     }
 
-    public void setIsAttend(boolean isAttend) {
+    public void setIsAttend(int isAttend) {
         this.isAttend = isAttend;
     }
+
+    
 
     public Date getRecordtime() {
         return recordtime;
