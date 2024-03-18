@@ -88,10 +88,12 @@ public class LoginController extends HttpServlet {
         if (account != null) {
             HttpSession session = request.getSession();
             session.setAttribute("account", account);
-            s.setAttribute("accountid", account.getIdtype());
+            
             if (account.getType().contains("gv")) {
+                s.setAttribute("accountid", account.getIdtype());
                 response.sendRedirect("home");
             }else if(account.getType().contains("sv")) {
+                s.setAttribute("accountid", account.getIdtype());
                 response.sendRedirect("homestudent");
             }
         } else {

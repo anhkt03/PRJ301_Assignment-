@@ -97,15 +97,18 @@
                                 <c:if test="${(sche.session.date eq d) and (sche.session.slot.tid eq slot.tid)}">
                                     ${sche.session.groupStudent.subject.subcode}
                                     <br/>at ${sche.session.room.rname}
-                                    <br/><c:if test="${sche.isAttend == 1}">
-                                        Attend
-                                    </c:if>
-                                    <c:if test="${sche.isAttend == -1}">
-                                        Absent
-                                    </c:if>
-                                    <c:if test="${sche.isAttend == 0}">
-                                       Not Yet
-                                    </c:if>
+                                    <br/>
+                                    <div style="color: blue">
+                                        <c:if test="${sche.isAttend == 1}">
+                                            Attend
+                                        </c:if>
+                                        <c:if test="${sche.isAttend == -1}">
+                                            Absent
+                                        </c:if>
+                                        <c:if test="${sche.isAttend == 0}">
+                                            Not Yet
+                                        </c:if>
+                                    </div>
                                 </c:if>
                             </c:forEach>
                         </td>

@@ -100,7 +100,6 @@ public class TakeAttendance extends Authorization {
                 attend.setIsAttend(-1);
             }
             
-            
             attend.setComment(request.getParameter("comment" + student.getSid()));
             attends.add(attend);
         }

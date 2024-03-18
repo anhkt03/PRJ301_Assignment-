@@ -171,7 +171,9 @@ public class ScheduleController extends Authorization {
         ScheduleDBContext schedule = new ScheduleDBContext();
         ArrayList<Attendance> sches = schedule.getBy(sid, from, to);
         
-      
+        for (Attendance sche : sches) {
+            System.out.println("sid: " + sid+ "attend: "+ sche.getIsAttend());
+        }
 
         TimeSlotDBContext slotDB = new TimeSlotDBContext();
         ArrayList<TimeSlot> slots = slotDB.list();
