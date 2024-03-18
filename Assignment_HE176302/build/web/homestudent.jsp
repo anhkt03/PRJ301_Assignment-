@@ -41,7 +41,12 @@
         button:hover {
             background-color: #45a049;
         }
+        .hello {
+                background-color: orange;
+                padding:10px 0 10px ;
+            }
     </style>
+    <div class="hello">Hello ${sessionScope.account.username}</div>
     <body>
         <h1>FPT University Academic Portal</h1>
         <h2>Home Student</h2>

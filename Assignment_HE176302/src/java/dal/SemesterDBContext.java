@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author kieuthanhtheanh
  */
-public class SemesterDBContext extends DBContext<Semester>{
+public class SemesterDBContext extends DBContext<Semester> {
 
     @Override
     public ArrayList<Semester> list() {
@@ -26,18 +26,39 @@ public class SemesterDBContext extends DBContext<Semester>{
             String sql = "SELECT semid, semName FROM Semesters";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
-            while(rs.next())
-            {
+            while (rs.next()) {
                 Semester s = new Semester();
                 s.setSemid(rs.getInt("semid"));
                 s.setSemName(rs.getString("semName"));
                 semesters.add(s);
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(DepartmentDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return semesters;
     }
-    
+
+    public ArrayList<Semester> getSemesterByDepid(int depid) {
+        ArrayList<Semester> semesters = new ArrayList<>();
+        try {
+            String sql = "SELECT Semesters.semid, Semesters.semName\n"
+                    + "FROM     Departments INNER JOIN\n"
+                    + "         Semesters ON Departments.depid = Semesters.depid\n"
+                    + "         where Departments.depid = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, depid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Semester s = new Semester();
+                s.setSemid(rs.getInt("semid"));
+                s.setSemName(rs.getString("semName"));
+                semesters.add(s);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DepartmentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return semesters;
+    }
 }

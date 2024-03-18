@@ -13,26 +13,41 @@
         <title>View Grade</title>
     </head>
     <body>
+
+        <form id="semForm" action="" method="GET">
+            <input type="hidden" id="semIdInput" name="semid" value="">
+            <!--            <input type="hidden" id="semesterInput" name="semester" value="">-->
+        </form>
         <table border="1">
             <thead>
                 <tr>
-                    <th>Department</th>
                     <th>Term</th>
-                    <th>Grade Category</th>
+                    <th>Course</th>
                     <th>Grade Items</th>
                     <th>Weight</th>
                     <th>Value</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <c:forEach items="${requestScope.departments}" var="d">
+                <c:forEach items="${requestScope.semesters}" var="s">
                     <tr>
-                        <td>${d.depname}</td>
+                        <td onclick="submitForm('${s.semid}')">${s.semName}</td>
                     </tr>
-                    </c:forEach>
-                </tr>
-            </tbody>
-        </table>
-    </body>
+                    <c:forEach items="${requestScope.subjects}" var="sub">
+                        <tr>
+                            <td>a</td>
+                        </tr>
+                </c:forEach>
+            </c:forEach>  
+        </tbody>
+
+    </table>
+</body>
+
+<script>
+    function submitForm(semid) {
+        document.getElementById("semIdInput").value = semid;
+        document.getElementById("semForm").submit();
+    }
+</script>
 </html>

@@ -5,7 +5,11 @@
 package controller.Student;
 
 import dal.DepartmentDBContext;
+import dal.SemesterDBContext;
+import dal.SubjectDBContext;
 import entity.Department;
+import entity.Semester;
+import entity.Subject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -59,11 +63,19 @@ public class ViewGrade extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DepartmentDBContext deDB = new DepartmentDBContext();
-        ArrayList<Department> departments = deDB.list();
+        SemesterDBContext sdb = new SemesterDBContext();
+        ArrayList<Semester> semesters = sdb.list();
         
+        String raw_semid = request.getParameter("semid");
+        int semid = 0;
+        if(raw_semid != null) {
+            semid = Integer.parseInt(raw_semid);
+        }
+        SubjectDBContext subdb = new SubjectDBContext();
+        ArrayList<Subject> subjects = subdb.getSubjectBySemester(semid);
 
-        request.setAttribute("departments", departments);
+        request.setAttribute("subjects", subjects);
+        request.setAttribute("semesters", semesters);
         request.getRequestDispatcher("view/student/viewgrade.jsp").forward(request, response);
     }
 
