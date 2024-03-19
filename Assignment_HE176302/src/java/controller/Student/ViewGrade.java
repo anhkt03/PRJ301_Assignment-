@@ -86,10 +86,11 @@ public class ViewGrade extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        //int sid = (int) session.getAttribute("accountid");
+        
         String raw_semid = request.getParameter("semid");
         int semid = 0;
-        
-        HttpSession session = request.getSession();
         
         if (raw_semid != null && !raw_semid.isEmpty()) {
             semid = Integer.parseInt(raw_semid);

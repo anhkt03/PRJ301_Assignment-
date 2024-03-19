@@ -46,4 +46,31 @@ public class SubjectDBContext extends DBContext<Subject> {
         return subjects;
     }
 
+    public ArrayList<Subject> getSubjectByStudent(int sid, int semid) {
+        ArrayList<Subject> subjects = new ArrayList<>();
+
+        try {
+            String sql = "SELECT DISTINCT Subjects.subcode, Subjects.subid\n"
+                    + "FROM     [Group] INNER JOIN\n"
+                    + "                  GroupStudents ON [Group].gid = GroupStudents.gid INNER JOIN\n"
+                    + "                  Students ON [Group].sid = Students.sid INNER JOIN\n"
+                    + "                  Subjects ON GroupStudents.subid = Subjects.subid\n"
+                    + "				  inner join Semesters on Subjects.semid = Semesters.semid\n"
+                    + "				  where Students.sid = ? and Semesters.semid = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, sid);
+            st.setInt(2, semid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Subject s = new Subject();
+                s.setSubid(rs.getInt("subid"));
+                s.setSubcode(rs.getString("subcode"));
+                subjects.add(s);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DepartmentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return subjects;
+    }
+
 }
