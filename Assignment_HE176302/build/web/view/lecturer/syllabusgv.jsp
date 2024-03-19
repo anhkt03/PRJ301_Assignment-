@@ -46,13 +46,11 @@
     <body>
         <button class="home" onclick="goToHomePage()">Home</button>
         <h2>Syllabus</h2>
-        <form action="syllabus" method="post">
+        <form action="viewsyllabus" method="post">
             Enter Subject Code: <input type="text" name="subcode" />
             <input type="submit" value="View"/>
         </form>
-        <c:if test="${not empty requestScope.subdetails}">
-            <div class="subcode">${sessionScope.subcode}</div>
-        </c:if>
+        <div class="subcode">${sessionScope.subcode}</div>
         <c:if test="${empty requestScope.subdetails}">
             <p class="error">Enter right subject code again</p>
         </c:if>
@@ -81,7 +79,7 @@
     </body>
     <script>
         function goToHomePage() {
-            window.location.href = "homestudent";
+            window.location.href = "home";
         }
     </script>
 </html>
