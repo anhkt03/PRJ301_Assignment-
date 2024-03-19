@@ -59,6 +59,9 @@
             <div>
                 <button type="submit" name="action" value="editgrade">Edit Grade For Student</button>
             </div>
+            <div>
+                <button type="submit" name="action" value="viewsyllabus">View Syllabus</button>
+            </div>
         </form>
         <button class="logout" onclick="logout()">Logout</button>
     </body>

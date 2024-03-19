@@ -142,6 +142,7 @@ public class ScheduleController extends Authorization {
         int sid = (int) request.getSession().getAttribute("accountid");
         //      int sid = (int) request.getSession().getAttribute("accountstudent");
 
+        System.out.println("sid new= "+ sid);
         String raw_year = request.getParameter("year");
         String raw_week = request.getParameter("week");
         java.sql.Date from = null;

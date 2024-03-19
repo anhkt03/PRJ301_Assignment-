@@ -19,6 +19,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 /**
@@ -67,28 +68,9 @@ public class ViewGrade extends HttpServlet {
             throws ServletException, IOException {
         SemesterDBContext sdb = new SemesterDBContext();
         ArrayList<Semester> semesters = sdb.list();
-        
-        String raw_semid = request.getParameter("semid");
-        int semid = 0;
-        if(raw_semid != null) {
-            semid = Integer.parseInt(raw_semid);
-        }
-        SubjectDBContext subdb = new SubjectDBContext();
-        
-        
-        String raw_subid = request.getParameter("subid");
-        int subid = 0;
-        if(raw_subid != null) {
-            subid = Integer.parseInt(raw_subid);
-        }
-        GradeDBContext gdb = new GradeDBContext();
-        ArrayList<Grade> grades = gdb.getGradeBySubject(subid);
-        
-        Semester sem = sdb.getTermBySubid(subid);
-        
-        ArrayList<Subject> subjects = subdb.getSubjectBySemester(semid);
-        request.setAttribute("grades", grades);
-        request.setAttribute("subjects", subjects);
+        HttpSession session = request.getSession();
+        session.setAttribute("semesters", semesters);
+
         request.setAttribute("semesters", semesters);
         request.getRequestDispatcher("view/student/viewgrade.jsp").forward(request, response);
     }
@@ -104,7 +86,38 @@ public class ViewGrade extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            }
+        String raw_semid = request.getParameter("semid");
+        int semid = 0;
+        
+        HttpSession session = request.getSession();
+        
+        if (raw_semid != null && !raw_semid.isEmpty()) {
+            semid = Integer.parseInt(raw_semid);
+            session.setAttribute("semid", semid);
+        }
+        SubjectDBContext subdb = new SubjectDBContext();
+
+        String raw_subid = request.getParameter("subid");
+        int subid = 0;
+        if (raw_subid != null && !raw_subid.isEmpty()) {
+            subid = Integer.parseInt(raw_subid);
+        }
+        GradeDBContext gdb = new GradeDBContext();
+        ArrayList<Grade> grades = gdb.getGradeBySubject(subid);
+        ArrayList<Subject> subjects = subdb.getSubjectBySemester(semid);
+        
+        float sumGrade = 0;
+        
+        for (Grade grade : grades) {
+            float sumItem = grade.getWeight() * grade.getValue() / 100;
+            sumGrade+= sumItem;
+        }
+        
+        request.setAttribute("sumGrade", sumGrade);
+        request.setAttribute("grades", grades);
+        request.setAttribute("subjects", subjects);
+        request.getRequestDispatcher("view/student/viewgrade.jsp").forward(request, response);
+    }
 
     /**
      * Returns a short description of the servlet.

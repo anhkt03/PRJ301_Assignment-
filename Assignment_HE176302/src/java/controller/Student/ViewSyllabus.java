@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.Authentication;
+package controller.Student;
 
+import dal.SubjectDetailDBContext;
+import entity.SubjectDetail;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,13 +13,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  *
  * @author kieuthanhtheanh
  */
-@WebServlet(name = "HomeStudent", urlPatterns = {"/homestudent"})
-public class HomeStudent extends HttpServlet {
+@WebServlet(name = "ViewSyllabus", urlPatterns = {"/syllabus"})
+public class ViewSyllabus extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -35,10 +39,10 @@ public class HomeStudent extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HomeStudent</title>");            
+            out.println("<title>Servlet ViewSyllabus</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet HomeStudent at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ViewSyllabus at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +60,7 @@ public class HomeStudent extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("homestudent.jsp").forward(request, response);
+        request.getRequestDispatcher("view/student/syllabus.jsp").forward(request, response);
     }
 
     /**
@@ -70,17 +74,13 @@ public class HomeStudent extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-
-        
-        
-        if ("viewSchedule".equals(action)) {
-            response.sendRedirect("schedule");
-        } else if ("viewGrade".equals(action)) {
-            response.sendRedirect("grade");
-        }else if ("viewSyllabus".equals(action)) {
-            response.sendRedirect("syllabus");
-        }
+        String subcode = request.getParameter("subcode");
+        SubjectDetailDBContext sddb = new SubjectDetailDBContext();
+        ArrayList<SubjectDetail> subdetails = sddb.list(subcode);
+        HttpSession s = request.getSession();
+        s.setAttribute("subcode", subcode);
+        request.setAttribute("subdetails", subdetails);
+        request.getRequestDispatcher("view/student/syllabus.jsp").forward(request, response);
     }
 
     /**
