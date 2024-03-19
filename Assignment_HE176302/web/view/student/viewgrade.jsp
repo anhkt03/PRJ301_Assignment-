@@ -14,10 +14,13 @@
     </head>
     <body>
 
-        <form id="semForm" action="" method="GET">
+        <form id="semForm" action="grade" method="GET">
             <input type="hidden" id="semIdInput" name="semid" value="">
-            <!--            <input type="hidden" id="semesterInput" name="semester" value="">-->
+            <input type="hidden" id="subjectInput" name="subid" value="">
         </form>
+        
+
+        
         <table border="1">
             <thead>
                 <tr>
@@ -29,25 +32,94 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach items="${requestScope.semesters}" var="s">
-                    <tr>
-                        <td onclick="submitForm('${s.semid}')">${s.semName}</td>
-                    </tr>
-                    <c:forEach items="${requestScope.subjects}" var="sub">
-                        <tr>
-                            <td>a</td>
-                        </tr>
-                </c:forEach>
-            </c:forEach>  
+            <td>
+                <div>
+                    <table>
+                        <c:forEach items="${requestScope.semesters}" var="s">
+                            <tr>
+                                <td onclick="submitForm('${s.semid}','')">${s.semName}</td>
+                            </tr>
+
+                        </c:forEach>
+                    </table>
+                </div>
+            </td>  
+            <td>
+                <div>
+                    <table>
+                        <c:forEach items="${requestScope.subjects}" var="sub">
+                            <tr>
+                                <td onclick="submitForm('${s.semid}','${sub.subid}')">${sub.subname}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <table>
+                        <c:forEach items="${requestScope.grades}" var="g">
+                            <tr>
+                                <td>${g.item}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <table>
+                        <c:forEach items="${requestScope.grades}" var="g">
+                            <tr>
+                                <td>${g.weight}%</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <table>
+                        <c:forEach items="${requestScope.grades}" var="g">
+                            <tr>
+                                <td>${g.value}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
+            </td>
         </tbody>
 
     </table>
 </body>
 
 <script>
-    function submitForm(semid) {
+    function submitForm(semid, subid) {
+        
+//        var url = 'grade?';
+//        
+//        if(subid==='') {
+//            url += 'semid=' + semid;
+//        }else {
+//            url += 'semid=' + subid;
+//        }
+        
+
+        
+       // document.getElementById("subjectInput").value = subid;
         document.getElementById("semIdInput").value = semid;
-        document.getElementById("semForm").submit();
+            document.getElementById("subjectInput").value = subid;
+            document.getElementById("semForm").submit();
+//        if(subid == null) {
+//            document.getElementById("semIdInput").value = semid;
+//            document.getElementById("semForm").submit();
+//        }else {
+//            //document.getElementById("semForm").submit();
+//            document.getElementById("semIdInput").value = semid;
+//            document.getElementById("subjectInput").value = subid;
+//            document.getElementById("semForm").submit();
+//        }
+        
     }
 </script>
 </html>

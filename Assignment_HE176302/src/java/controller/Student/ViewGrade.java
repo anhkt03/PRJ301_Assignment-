@@ -5,9 +5,11 @@
 package controller.Student;
 
 import dal.DepartmentDBContext;
+import dal.GradeDBContext;
 import dal.SemesterDBContext;
 import dal.SubjectDBContext;
 import entity.Department;
+import entity.Grade;
 import entity.Semester;
 import entity.Subject;
 import java.io.IOException;
@@ -72,8 +74,20 @@ public class ViewGrade extends HttpServlet {
             semid = Integer.parseInt(raw_semid);
         }
         SubjectDBContext subdb = new SubjectDBContext();
+        
+        
+        String raw_subid = request.getParameter("subid");
+        int subid = 0;
+        if(raw_subid != null) {
+            subid = Integer.parseInt(raw_subid);
+        }
+        GradeDBContext gdb = new GradeDBContext();
+        ArrayList<Grade> grades = gdb.getGradeBySubject(subid);
+        
+        Semester sem = sdb.getTermBySubid(subid);
+        
         ArrayList<Subject> subjects = subdb.getSubjectBySemester(semid);
-
+        request.setAttribute("grades", grades);
         request.setAttribute("subjects", subjects);
         request.setAttribute("semesters", semesters);
         request.getRequestDispatcher("view/student/viewgrade.jsp").forward(request, response);
@@ -90,9 +104,7 @@ public class ViewGrade extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        request.getRequestDispatcher("view/student/viewgrade.jsp").forward(request, response);
-    }
+            }
 
     /**
      * Returns a short description of the servlet.

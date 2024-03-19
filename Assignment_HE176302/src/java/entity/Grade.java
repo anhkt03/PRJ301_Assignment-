@@ -12,7 +12,7 @@ public class Grade {
     private int graid;
     private Subject subject;
     private String item;
-    private float weight;
+    private int weight;
     private float value;
     private String status;
 
@@ -44,7 +44,7 @@ public class Grade {
         return weight;
     }
 
-    public void setWeight(float weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 

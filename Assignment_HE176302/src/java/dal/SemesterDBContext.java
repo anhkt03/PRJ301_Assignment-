@@ -61,4 +61,25 @@ public class SemesterDBContext extends DBContext<Semester> {
 
         return semesters;
     }
+
+    public Semester getTermBySubid(int subid) {
+        Semester semesters = new Semester();
+        try {
+            String sql = "SELECT Semesters.semid\n"
+                    + "FROM     Semesters INNER JOIN\n"
+                    + "                  Subjects ON Semesters.semid = Subjects.semid\n"
+                    + "				  where Subjects.subid = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, subid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                semesters.setSemid(rs.getInt("semid"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DepartmentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return semesters;
+    }
+
 }
