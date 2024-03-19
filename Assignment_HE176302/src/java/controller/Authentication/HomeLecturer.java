@@ -79,7 +79,7 @@ public class HomeLecturer extends HttpServlet {
         } else if ("editgrade".equals(action)) {
             
         }else if("viewsyllabus".equals(action)) {
-            response.sendRedirect("viewsyllabus");
+            response.sendRedirect("syllabus");
         }
     }
 
