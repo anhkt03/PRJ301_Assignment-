@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.Authentication;
+package controller.Lecturer;
 
+import dal.SubjectDetailDBContext;
+import entity.SubjectDetail;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,13 +13,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  *
  * @author kieuthanhtheanh
  */
-@WebServlet(name = "Home", urlPatterns = {"/home"})
-public class HomeLecturer extends HttpServlet {
+@WebServlet(name = "SyllabusGv", urlPatterns = {"/viewsyllabus"})
+public class SyllabusGv extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -35,10 +39,10 @@ public class HomeLecturer extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Home</title>");
+            out.println("<title>Servlet SyllabusGv</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Home at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SyllabusGv at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +60,7 @@ public class HomeLecturer extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("homelecturer.jsp").forward(request, response);
+        request.getRequestDispatcher("view/lecturer/syllabusgv.jsp").forward(request, response);
     }
 
     /**
@@ -70,17 +74,13 @@ public class HomeLecturer extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-
-        
-        
-        if ("viewTimetable".equals(action)) {
-            response.sendRedirect("timetable");
-        } else if ("editgrade".equals(action)) {
-            
-        }else if("viewsyllabus".equals(action)) {
-            response.sendRedirect("viewsyllabus");
-        }
+        String subcode = request.getParameter("subcode");
+        SubjectDetailDBContext sddb = new SubjectDetailDBContext();
+        ArrayList<SubjectDetail> subdetails = sddb.list(subcode);
+        HttpSession s = request.getSession();
+        s.setAttribute("subcode", subcode);
+        request.setAttribute("subdetails", subdetails);
+        request.getRequestDispatcher("view/lecturer/syllabusgv.jsp").forward(request, response);
     }
 
     /**

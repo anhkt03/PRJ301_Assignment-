@@ -50,7 +50,9 @@
             Enter Subject Code: <input type="text" name="subcode" />
             <input type="submit" value="View"/>
         </form>
-        <div class="subcode">${sessionScope.subcode}</div>
+        <c:if test="${not empty requestScope.subdetails}">
+            <div class="subcode">${sessionScope.subcode}</div>
+        </c:if>
         <c:if test="${empty requestScope.subdetails}">
             <p class="error">Enter right subject code again</p>
         </c:if>
